@@ -1,0 +1,28 @@
+<div class="container">
+  <h1><span id="smiley">&#9787;</span>Events<span id="total">Total: {{total}}</span></h1>
+  <!-- To-do List(Adding Data) -->
+  <div class="inputTag">
+    <input type="text" class="inp"placeholder="enter any data" [(ngModel)]="inpData">
+    <button value="add" (click)='AddData(inpData)' [disabled]="!isUnchanged">AddData</button>
+  </div>
+  <div>
+     <ul>
+      <li *ngFor='let x of listData;index as i'>
+         <span class='remove' (click)="remove(i)">&#9746;</span>
+        <span >{{x|uppercase}}
+          <!-- (click)="binding($event,i)" -->
+          <img (click)="imgBinding($event,i)"src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Simpleicons_Business_crayon-pen-variant-in-diagonal-position.svg/1024px-Simpleicons_Business_crayon-pen-variant-in-diagonal-position.svg.png"alt=""/>
+        </span>
+       
+        </li>
+    </ul>
+  </div>
+  <div *ngIf='editData' class='edit'>
+    <h3>Change Data<span class="close" (click)="closing()">x</span></h3>
+  <input type="text" [(ngModel)]="oldData"/>
+  <button type="button" value="Change" (click)="newData(oldData)">Change</button>
+</div>
+  <span *ngIf='errorMsg' class='errorMsg'>
+  {{error}}
+  </span>
+</div>
